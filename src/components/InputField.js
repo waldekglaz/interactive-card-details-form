@@ -20,7 +20,15 @@ const StyledField = styled.div`
   }
 `;
 
-function InputField({ label, type, placeholder, value, onChange, className }) {
+function InputField({
+  label,
+  type,
+  placeholder,
+  value,
+  onChange,
+  className,
+  maxLength,
+}) {
   return (
     <StyledField>
       <label>{label}</label>
@@ -30,6 +38,7 @@ function InputField({ label, type, placeholder, value, onChange, className }) {
         value={value}
         onChange={onChange}
         className={className}
+        maxLength={maxLength}
       />
     </StyledField>
   );

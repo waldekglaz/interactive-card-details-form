@@ -1,51 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
-import styled from "styled-components";
-const StyledMain = styled.main`
-  @media (min-width: 1024px) {
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-  }
-`;
-const StyledForm = styled.form`
-  padding: 9.1rem 0 4.5rem;
-  width: 327px;
-  margin: 0 auto;
-  .wide-input {
-    width: 100%;
-  }
-  .nested-fields {
-    display: flex;
-    justify-content: flex-start;
-    .small-input {
-      width: 72px;
-      margin-right: 8px;
-    }
-    .medium-input {
-      width: 164px;
-    }
-  }
-  button {
-    width: 100%;
-    background: #21092f;
-    border-radius: 8px;
-    border: 1px solid #21092f;
-    font-size: 18px;
-    color: #fff;
-    padding: 1.5rem 0;
-    cursor: pointer;
-  }
-`;
+import { StyledMain, StyledForm } from "./Main.styled";
+
 class App extends React.Component {
   state = {
-    cvc: "000",
-    cardNumber: "1234 5444 1234 1223",
-    cardHolderName: "Jane Appleseed",
-    expireMonth: "00",
-    expireYear: "00",
+    cvc: "",
+    cardNumber: "",
+    cardHolderName: "Waldea",
+    expireMonth: "",
+    expireYear: "",
   };
   onFormSubmit = (e) => {
     e.preventDefault();
@@ -88,42 +52,47 @@ class App extends React.Component {
             value={this.state.cardHolderName}
             onChange={this.onNameChange}
             className="wide-input"
+            maxLength="28"
           />
 
           <InputField
             label="Card Number"
-            type="number"
+            type="text"
             placeholder="e.g. 1234 5678 9123 0000"
             value={this.state.cardNumber}
             onChange={this.onCradNumberChange}
             onFocus={this.onInputClick}
             className="wide-input"
+            maxLength="16"
           />
 
           <div className="nested-fields">
             <InputField
               label="EXP. DATE"
-              type="number"
+              type="text"
               placeholder="MM"
               value={this.state.expireMonth}
               onChange={this.onMonthChange}
               className="small-input"
+              maxLength="2"
             />
             <InputField
               label="(MM/YY)"
-              type="number"
+              type="text"
               placeholder="YY"
               value={this.state.expireYear}
               onChange={this.onYearChange}
               className="small-input"
+              maxLength="2"
             />
             <InputField
               label="cvc"
-              type="number"
+              type="text"
               placeholder="e.g. 123"
               value={this.state.cvc}
               onChange={this.onCvcChange}
               className="medium-input"
+              maxLength="3"
             />
           </div>
           <button type="submit">Confirm</button>
