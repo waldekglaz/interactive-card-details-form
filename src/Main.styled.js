@@ -9,9 +9,7 @@ const StyledMain = styled.main`
   }
 `;
 const StyledForm = styled.form`
-  padding: 9.1rem 0 4.5rem;
-  width: 327px;
-  margin: 0 auto;
+  padding: 0 2rem;
   .wide-input {
     width: 100%;
   }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
+import Container from "./components/Container";
 import { StyledMain, StyledForm } from "./Main.styled";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
   const [isExpireMonthInputValid, setIsExpireMonthInputValid] = useState(false);
   const [isExpireYearInputValid, setIsExpireYearInputValid] = useState(false);
   const [isCvcInputValid, setIsCvcInputValid] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const nameChangeHandler = (e) => {
     setCardHolderName(e.target.value);
@@ -56,7 +58,7 @@ const App = () => {
       setIsCvcInputValid(true);
     }
   };
-  const onFormSubmit = (e) => {
+  const formSubmitHandler = (e) => {
     e.preventDefault();
   };
   const formValidation = () => {
@@ -71,6 +73,10 @@ const App = () => {
       setIsFormValid(true);
     }
   };
+
+  const formSubmittion = () => {
+    setFormSubmitted(true);
+  };
   return (
     <StyledMain>
       <Header
@@ -80,64 +86,72 @@ const App = () => {
         expMonth={expireMonth}
         expYear={expireYear}
       />
-      <StyledForm onChange={formValidation}>
-        <InputField
-          label="Cardholder name"
-          type="text"
-          placeholder="e.g. Jane Appleseed"
-          value={cardHolderName}
-          onChange={nameChangeHandler}
-          className="wide-input"
-          maxLength="28"
-        />
+      <Container>
+        {!formSubmitted && (
+          <StyledForm onChange={formValidation} onSubmit={formSubmitHandler}>
+            <InputField
+              label="Cardholder name"
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+              value={cardHolderName}
+              onChange={nameChangeHandler}
+              className="wide-input"
+              maxLength="28"
+            />
 
-        <InputField
-          label="Card Number"
-          type="text"
-          placeholder="e.g. 1234 5678 9123 0000"
-          value={cardNumber}
-          onChange={cardNumberChangeHandler}
-          className="wide-input"
-          maxLength="16"
-        />
+            <InputField
+              label="Card Number"
+              type="text"
+              placeholder="e.g. 1234 5678 9123 0000"
+              value={cardNumber}
+              onChange={cardNumberChangeHandler}
+              className="wide-input"
+              maxLength="16"
+            />
 
-        <div className="nested-fields">
-          <InputField
-            label="EXP. DATE"
-            type="text"
-            placeholder="MM"
-            value={expireMonth}
-            onChange={expireMonthChangeHandler}
-            className="small-input"
-            maxLength="2"
-          />
-          <InputField
-            label="(MM/YY)"
-            type="text"
-            placeholder="YY"
-            value={expireYear}
-            onChange={expireYearChangeHandler}
-            className="small-input"
-            maxLength="2"
-          />
-          <InputField
-            label="cvc"
-            type="text"
-            placeholder="e.g. 123"
-            value={cvc}
-            onChange={cvcChangeHandler}
-            className="medium-input"
-            maxLength="3"
-          />
-        </div>
+            <div className="nested-fields">
+              <InputField
+                label="EXP. DATE"
+                type="text"
+                placeholder="MM"
+                value={expireMonth}
+                onChange={expireMonthChangeHandler}
+                className="small-input"
+                maxLength="2"
+              />
+              <InputField
+                label="(MM/YY)"
+                type="text"
+                placeholder="YY"
+                value={expireYear}
+                onChange={expireYearChangeHandler}
+                className="small-input"
+                maxLength="2"
+              />
+              <InputField
+                label="cvc"
+                type="text"
+                placeholder="e.g. 123"
+                value={cvc}
+                onChange={cvcChangeHandler}
+                className="medium-input"
+                maxLength="3"
+              />
+            </div>
 
-        {!isFormValid && (
-          <button disabled type="button">
-            Confirm
-          </button>
+            {!isFormValid && (
+              <button disabled type="button">
+                Confirm
+              </button>
+            )}
+            {isFormValid && (
+              <button onClick={formSubmittion} type="button">
+                Confirm
+              </button>
+            )}
+          </StyledForm>
         )}
-        {isFormValid && <button type="button">Confirm</button>}
-      </StyledForm>
+      </Container>
     </StyledMain>
   );
 };
