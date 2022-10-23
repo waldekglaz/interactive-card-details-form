@@ -73,8 +73,8 @@ const StyledCardFront = styled.div`
   }
   .display-number {
     font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 1.7rem;
+    width: 72%;
+    margin: 0 auto 1.7rem;
   }
   .display-name {
     text-transform: uppercase;
@@ -103,6 +103,7 @@ const StyledCardFront = styled.div`
       font-size: 28px;
       letter-spacing: 3.4222px;
       text-align: left;
+      width: 84%;
     }
     .display-name,
     .display-expire-date {
