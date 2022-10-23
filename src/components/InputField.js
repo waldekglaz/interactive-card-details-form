@@ -1,5 +1,6 @@
 import React from "react";
-import { StyledField } from "./InputField.styled";
+// import { StyledField } from "./InputField.styled";
+import classes from "./InputField.module.css";
 function InputField({
   label,
   type,
@@ -10,7 +11,7 @@ function InputField({
   maxLength,
 }) {
   return (
-    <StyledField>
+    <div className={classes.inputWrapper}>
       <label>{label}</label>
       <input
         type={type}
@@ -20,7 +21,7 @@ function InputField({
         className={className}
         maxLength={maxLength}
       />
-    </StyledField>
+    </div>
   );
 }
 

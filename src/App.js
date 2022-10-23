@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
 import Container from "./components/Container";
-import { StyledMain, StyledForm } from "./Main.styled";
+import classes from "./App.module.css";
 import ConfirmationMessage from "./components/ConfirmationMessage";
 import Button from "./components/Button";
 
@@ -94,7 +94,7 @@ const App = () => {
     setFormSubmitted(false);
   };
   return (
-    <StyledMain>
+    <main className={classes.main}>
       <Header
         cvc={cvc}
         name={cardHolderName}
@@ -104,14 +104,18 @@ const App = () => {
       />
       <Container>
         {!formSubmitted && (
-          <StyledForm onChange={formValidation} onSubmit={formSubmitHandler}>
+          <form
+            className={classes.form}
+            onChange={formValidation}
+            onSubmit={formSubmitHandler}
+          >
             <InputField
               label="Cardholder name"
               type="text"
               placeholder="e.g. Jane Appleseed"
               value={cardHolderName}
               onChange={nameChangeHandler}
-              className="wide-input"
+              className={classes.wideInput}
               maxLength="28"
             />
 
@@ -121,18 +125,18 @@ const App = () => {
               placeholder="e.g. 1234 5678 9123 0000"
               value={cardNumber}
               onChange={cardNumberChangeHandler}
-              className="wide-input"
+              className={classes.wideInput}
               maxLength="16"
             />
 
-            <div className="nested-fields">
+            <div className={classes.nestedFields}>
               <InputField
                 label="EXP. DATE"
                 type="text"
                 placeholder="MM"
                 value={expireMonth}
                 onChange={expireMonthChangeHandler}
-                className="small-input"
+                className={classes.smallInput}
                 maxLength="2"
               />
               <InputField
@@ -141,7 +145,7 @@ const App = () => {
                 placeholder="YY"
                 value={expireYear}
                 onChange={expireYearChangeHandler}
-                className="small-input"
+                className={classes.smallInput}
                 maxLength="2"
               />
               <InputField
@@ -150,18 +154,18 @@ const App = () => {
                 placeholder="e.g. 123"
                 value={cvc}
                 onChange={cvcChangeHandler}
-                className="medium-input"
+                className={classes.mediumInput}
                 maxLength="3"
               />
             </div>
 
             {!isFormValid && <Button text="Confirm" disabled={true} />}
             {isFormValid && <Button onClick={formSubmittion} text="Confirm" />}
-          </StyledForm>
+          </form>
         )}
         {formSubmitted && <ConfirmationMessage onClick={formReset} />}
       </Container>
-    </StyledMain>
+    </main>
   );
 };
 

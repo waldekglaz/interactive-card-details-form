@@ -1,0 +1,29 @@
+.form {
+  padding: 0 2rem;
+  width: 320px;
+  margin: 0 auto;
+}
+
+.wideInput {
+  width: 100%;
+}
+.nestedFields {
+  display: flex;
+  justify-content: flex-start;
+}
+.smallInput {
+  width: 72px;
+  margin-right: 8px;
+}
+.mediumInput {
+  width: 164px;
+}
+
+@media (min-width: 1024px) {
+  .main {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+  }
+}
