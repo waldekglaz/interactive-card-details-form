@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import InputField from "./components/InputField";
 import Container from "./components/Container";
 import { StyledMain, StyledForm } from "./Main.styled";
+import ConfirmationMessage from "./components/ConfirmationMessage";
 
 const App = () => {
   const [cardHolderName, setCardHolderName] = useState("");
@@ -151,6 +152,7 @@ const App = () => {
             )}
           </StyledForm>
         )}
+        {formSubmitted && <ConfirmationMessage />}
       </Container>
     </StyledMain>
   );

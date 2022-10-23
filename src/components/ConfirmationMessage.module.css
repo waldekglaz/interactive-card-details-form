@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+img {
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 3.5rem;
+}
+h2 {
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 3.4222px;
+  margin-bottom: 1.6rem;
+}
+p {
+  color: #8f8694;
+  font-size: 1.8rem;
+}
