@@ -1,6 +1,52 @@
+# Frontend Mentor - Interactive Card Details Form
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- Fill in the form and see the card details update in real-time
+- To submit the form only when all fields are filled.
+
+### Screenshot Initial
+
+![](./initialScreen.png)
+
+### Screenshot Form ready to be submitted
+
+![](./readyToSubmit.png)
+
+### Form Submitted
+
+![](./submitted.png)
+
+### Links
+
+- Solution URL: [code](https://github.com/waldekglaz/interactive-card-details-form)
+- Live Site URL: [live](https://wg-card-details.netlify.app/)
+
+## My process
+
+### Built with
+
+- [React](https://reactjs.org/) - JS library
+- CSS modules
+- Flexbox
+- Mobile-first workflow
 
 ## Available Scripts
 
