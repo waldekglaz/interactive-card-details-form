@@ -24,21 +24,6 @@ const StyledForm = styled.form`
       width: 164px;
     }
   }
-  button:disabled {
-    background-color: gray;
-    border: 1px solid gray;
-    pointer-events: none;
-  }
-  button {
-    width: 100%;
-    background: #21092f;
-    border-radius: 8px;
-    border: 1px solid #21092f;
-    font-size: 18px;
-    color: #fff;
-    padding: 1.5rem 0;
-    cursor: pointer;
-  }
 `;
 
 export { StyledMain, StyledForm };

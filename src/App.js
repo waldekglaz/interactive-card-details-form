@@ -4,6 +4,7 @@ import InputField from "./components/InputField";
 import Container from "./components/Container";
 import { StyledMain, StyledForm } from "./Main.styled";
 import ConfirmationMessage from "./components/ConfirmationMessage";
+import Button from "./components/Button";
 
 const App = () => {
   const [cardHolderName, setCardHolderName] = useState("");
@@ -25,7 +26,6 @@ const App = () => {
   const nameChangeHandler = (e) => {
     setCardHolderName(e.target.value);
     if (e.target.value.length > 3) {
-      console.log("name validated");
       setIsCardHolderNameInputValid(true);
     }
   };
@@ -33,7 +33,6 @@ const App = () => {
   const cardNumberChangeHandler = (e) => {
     setCardNumber(e.target.value);
     if (e.target.value.length === 16) {
-      console.log("number validated");
       setIsCardNumberInputValid(true);
     }
   };
@@ -41,21 +40,18 @@ const App = () => {
   const expireMonthChangeHandler = (e) => {
     setexpireMonth(e.target.value);
     if (e.target.value.length === 2) {
-      console.log("month validated");
       setIsExpireMonthInputValid(true);
     }
   };
   const expireYearChangeHandler = (e) => {
     setexpireYear(e.target.value);
     if (e.target.value.length === 2) {
-      console.log("year validated");
       setIsExpireYearInputValid(true);
     }
   };
   const cvcChangeHandler = (e) => {
     setCvc(e.target.value);
     if (e.target.value.length === 2) {
-      console.log("cvc validated");
       setIsCvcInputValid(true);
     }
   };
@@ -70,13 +66,26 @@ const App = () => {
       isExpireYearInputValid &&
       isCvcInputValid
     ) {
-      console.log("formvalid");
       setIsFormValid(true);
     }
   };
 
   const formSubmittion = () => {
     setFormSubmitted(true);
+  };
+  const formReset = () => {
+    setCardHolderName("");
+    setCardNumber("");
+    setexpireMonth("");
+    setexpireYear("");
+    setCvc("");
+    setIsCardHolderNameInputValid(false);
+    setIsCardNumberInputValid(false);
+    setIsExpireMonthInputValid(false);
+    setIsExpireYearInputValid(false);
+    setIsCvcInputValid(false);
+    setIsFormValid(false);
+    setFormSubmitted(false);
   };
   return (
     <StyledMain>
@@ -140,19 +149,11 @@ const App = () => {
               />
             </div>
 
-            {!isFormValid && (
-              <button disabled type="button">
-                Confirm
-              </button>
-            )}
-            {isFormValid && (
-              <button onClick={formSubmittion} type="button">
-                Confirm
-              </button>
-            )}
+            {!isFormValid && <Button text="Confirm" disabled={true} />}
+            {isFormValid && <Button onClick={formSubmittion} text="Confirm" />}
           </StyledForm>
         )}
-        {formSubmitted && <ConfirmationMessage />}
+        {formSubmitted && <ConfirmationMessage onClick={formReset} />}
       </Container>
     </StyledMain>
   );
