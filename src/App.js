@@ -9,26 +9,67 @@ const App = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expireMonth, setexpireMonth] = useState("");
   const [expireYear, setexpireYear] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  // Validation
+  const [isCardHolderNameInputValid, setIsCardHolderNameInputValid] =
+    useState(false);
+  const [isCardNumberInputValid, setIsCardNumberInputValid] = useState(false);
+
+  const [isExpireMonthInputValid, setIsExpireMonthInputValid] = useState(false);
+  const [isExpireYearInputValid, setIsExpireYearInputValid] = useState(false);
+  const [isCvcInputValid, setIsCvcInputValid] = useState(false);
 
   const nameChangeHandler = (e) => {
     setCardHolderName(e.target.value);
+    if (e.target.value.length > 3) {
+      console.log("name validated");
+      setIsCardHolderNameInputValid(true);
+    }
   };
 
   const cardNumberChangeHandler = (e) => {
     setCardNumber(e.target.value);
+    if (e.target.value.length === 16) {
+      console.log("number validated");
+      setIsCardNumberInputValid(true);
+    }
   };
 
   const expireMonthChangeHandler = (e) => {
     setexpireMonth(e.target.value);
+    if (e.target.value.length === 2) {
+      console.log("month validated");
+      setIsExpireMonthInputValid(true);
+    }
   };
   const expireYearChangeHandler = (e) => {
     setexpireYear(e.target.value);
+    if (e.target.value.length === 2) {
+      console.log("year validated");
+      setIsExpireYearInputValid(true);
+    }
   };
   const cvcChangeHandler = (e) => {
     setCvc(e.target.value);
+    if (e.target.value.length === 2) {
+      console.log("cvc validated");
+      setIsCvcInputValid(true);
+    }
   };
   const onFormSubmit = (e) => {
     e.preventDefault();
+  };
+  const formValidation = () => {
+    if (
+      isCardHolderNameInputValid &&
+      isCardNumberInputValid &&
+      isExpireMonthInputValid &&
+      isExpireYearInputValid &&
+      isCvcInputValid
+    ) {
+      console.log("formvalid");
+      setIsFormValid(true);
+    }
   };
   return (
     <StyledMain>
@@ -39,7 +80,7 @@ const App = () => {
         expMonth={expireMonth}
         expYear={expireYear}
       />
-      <StyledForm onSubmit={onFormSubmit}>
+      <StyledForm onChange={formValidation}>
         <InputField
           label="Cardholder name"
           type="text"
@@ -89,109 +130,16 @@ const App = () => {
             maxLength="3"
           />
         </div>
-        <button type="submit">Confirm</button>
+
+        {!isFormValid && (
+          <button disabled type="button">
+            Confirm
+          </button>
+        )}
+        {isFormValid && <button type="button">Confirm</button>}
       </StyledForm>
     </StyledMain>
   );
 };
-
-// class App extends React.Component {
-//   state = {
-//     cvc: "",
-//     cardNumber: "",
-//     cardHolderName: "",
-//     expireMonth: "",
-//     expireYear: "",
-//   };
-//   onFormSubmit = (e) => {
-//     e.preventDefault();
-//   };
-
-//   onNameChange = (e) => {
-//     this.setState({ cardHolderName: e.target.value });
-//   };
-//   onCradNumberChange = (e) => {
-//     this.setState({ cardNumber: e.target.value });
-//   };
-
-//   onMonthChange = (e) => {
-//     this.setState({ expireMonth: e.target.value });
-//   };
-//   onYearChange = (e) => {
-//     this.setState({ expireYear: e.target.value });
-//   };
-//   onCvcChange = (e) => {
-//     this.setState({ cvc: e.target.value });
-//   };
-//   onInputClick = () => {
-//     this.setState({ cardNumber: "" });
-//   };
-//   render() {
-//     return (
-//       <StyledMain>
-//         <Header
-//           cvc={this.state.cvc}
-//           name={this.state.cardHolderName}
-//           cardNumber={this.state.cardNumber}
-//           expMonth={this.state.expireMonth}
-//           expYear={this.state.expireYear}
-//         />
-//         <StyledForm onSubmit={this.onFormSubmit}>
-//           <InputField
-//             label="Cardholder name"
-//             type="text"
-//             placeholder="e.g. Jane Appleseed"
-//             value={this.state.cardHolderName}
-//             onChange={this.onNameChange}
-//             className="wide-input"
-//             maxLength="28"
-//           />
-
-//           <InputField
-//             label="Card Number"
-//             type="text"
-//             placeholder="e.g. 1234 5678 9123 0000"
-//             value={this.state.cardNumber}
-//             onChange={this.onCradNumberChange}
-//             onFocus={this.onInputClick}
-//             className="wide-input"
-//             maxLength="16"
-//           />
-
-//           <div className="nested-fields">
-//             <InputField
-//               label="EXP. DATE"
-//               type="text"
-//               placeholder="MM"
-//               value={this.state.expireMonth}
-//               onChange={this.onMonthChange}
-//               className="small-input"
-//               maxLength="2"
-//             />
-//             <InputField
-//               label="(MM/YY)"
-//               type="text"
-//               placeholder="YY"
-//               value={this.state.expireYear}
-//               onChange={this.onYearChange}
-//               className="small-input"
-//               maxLength="2"
-//             />
-//             <InputField
-//               label="cvc"
-//               type="text"
-//               placeholder="e.g. 123"
-//               value={this.state.cvc}
-//               onChange={this.onCvcChange}
-//               className="medium-input"
-//               maxLength="3"
-//             />
-//           </div>
-//           <button type="submit">Confirm</button>
-//         </StyledForm>
-//       </StyledMain>
-//     );
-//   }
-// }
 
 export default App;

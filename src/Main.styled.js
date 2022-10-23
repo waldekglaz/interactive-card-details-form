@@ -26,6 +26,11 @@ const StyledForm = styled.form`
       width: 164px;
     }
   }
+  button:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+    pointer-events: none;
+  }
   button {
     width: 100%;
     background: #21092f;
