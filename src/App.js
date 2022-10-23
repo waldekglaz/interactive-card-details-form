@@ -7,7 +7,7 @@ class App extends React.Component {
   state = {
     cvc: "",
     cardNumber: "",
-    cardHolderName: "Waldea",
+    cardHolderName: "",
     expireMonth: "",
     expireYear: "",
   };
