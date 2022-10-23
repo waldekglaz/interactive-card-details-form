@@ -25,33 +25,39 @@ const App = () => {
 
   const nameChangeHandler = (e) => {
     setCardHolderName(e.target.value);
+
     if (e.target.value.length > 3) {
+      console.log("");
       setIsCardHolderNameInputValid(true);
     }
   };
 
   const cardNumberChangeHandler = (e) => {
     setCardNumber(e.target.value);
-    if (e.target.value.length === 16) {
+    const value = e.target.value;
+    if (e.target.value.length === 16 && !isNaN(+value)) {
       setIsCardNumberInputValid(true);
     }
   };
 
   const expireMonthChangeHandler = (e) => {
     setexpireMonth(e.target.value);
-    if (e.target.value.length === 2) {
+    const value = e.target.value;
+    if (e.target.value.length === 2 && !isNaN(+value)) {
       setIsExpireMonthInputValid(true);
     }
   };
   const expireYearChangeHandler = (e) => {
     setexpireYear(e.target.value);
-    if (e.target.value.length === 2) {
+    const value = e.target.value;
+    if (e.target.value.length === 2 && !isNaN(+value)) {
       setIsExpireYearInputValid(true);
     }
   };
   const cvcChangeHandler = (e) => {
     setCvc(e.target.value);
-    if (e.target.value.length === 2) {
+    const value = e.target.value;
+    if (e.target.value.length === 2 && !isNaN(+value)) {
       setIsCvcInputValid(true);
     }
   };
