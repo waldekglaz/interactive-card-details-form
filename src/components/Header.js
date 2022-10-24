@@ -14,7 +14,7 @@ const Header = ({ cvc, name, cardNumber, expMonth, expYear }) => {
           <div className={classes.displayNumber}>{cardNumber}</div>
           <div className={classes.wrapper}>
             <div className={classes.displayName}>{name}</div>
-            <div className="displayExpireDate">
+            <div className={classes.displayExpireDate}>
               {expMonth}/{expYear}
             </div>
           </div>
