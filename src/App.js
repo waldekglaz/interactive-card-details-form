@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
 import Container from "./components/Container";
-import ConfirmationMessage from "./components/ConfirmationMessage";
+// import ConfirmationMessage from "./components/ConfirmationMessage";
 import Button from "./components/Button";
 import classes from "./App.module.css";
+
+const ConfirmationMessage = React.lazy(() =>
+  import("./components/ConfirmationMessage")
+);
 
 const App = () => {
   const [cardHolderName, setCardHolderName] = useState("");
@@ -102,69 +106,73 @@ const App = () => {
         expMonth={expireMonth}
         expYear={expireYear}
       />
-      <Container>
-        {!formSubmitted && (
-          <form
-            className={classes.form}
-            onChange={formValidation}
-            onSubmit={formSubmitHandler}
-          >
-            <InputField
-              label="Cardholder name"
-              type="text"
-              placeholder="e.g. Jane Appleseed"
-              value={cardHolderName}
-              onChange={nameChangeHandler}
-              className={classes.wideInput}
-              maxLength="28"
-            />
-
-            <InputField
-              label="Card Number"
-              type="text"
-              placeholder="e.g. 1234 5678 9123 0000"
-              value={cardNumber}
-              onChange={cardNumberChangeHandler}
-              className={classes.wideInput}
-              maxLength="16"
-            />
-
-            <div className={classes.nestedFields}>
+      <Suspense>
+        <Container>
+          {!formSubmitted && (
+            <form
+              className={classes.form}
+              onChange={formValidation}
+              onSubmit={formSubmitHandler}
+            >
               <InputField
-                label="EXP. DATE"
+                label="Cardholder name"
                 type="text"
-                placeholder="MM"
-                value={expireMonth}
-                onChange={expireMonthChangeHandler}
-                className={classes.smallInput}
-                maxLength="2"
+                placeholder="e.g. Jane Appleseed"
+                value={cardHolderName}
+                onChange={nameChangeHandler}
+                className={classes.wideInput}
+                maxLength="28"
               />
-              <InputField
-                label="(MM/YY)"
-                type="text"
-                placeholder="YY"
-                value={expireYear}
-                onChange={expireYearChangeHandler}
-                className={classes.smallInput}
-                maxLength="2"
-              />
-              <InputField
-                label="cvc"
-                type="text"
-                placeholder="e.g. 123"
-                value={cvc}
-                onChange={cvcChangeHandler}
-                className={classes.mediumInput}
-                maxLength="3"
-              />
-            </div>
 
-            {!isFormValid && <Button text="Confirm" disabled={true} />}
-            {isFormValid && <Button onClick={formSubmittion} text="Confirm" />}
-          </form>
-        )}
-        {formSubmitted && <ConfirmationMessage onClick={formReset} />}
-      </Container>
+              <InputField
+                label="Card Number"
+                type="text"
+                placeholder="e.g. 1234 5678 9123 0000"
+                value={cardNumber}
+                onChange={cardNumberChangeHandler}
+                className={classes.wideInput}
+                maxLength="16"
+              />
+
+              <div className={classes.nestedFields}>
+                <InputField
+                  label="EXP. DATE"
+                  type="text"
+                  placeholder="MM"
+                  value={expireMonth}
+                  onChange={expireMonthChangeHandler}
+                  className={classes.smallInput}
+                  maxLength="2"
+                />
+                <InputField
+                  label="(MM/YY)"
+                  type="text"
+                  placeholder="YY"
+                  value={expireYear}
+                  onChange={expireYearChangeHandler}
+                  className={classes.smallInput}
+                  maxLength="2"
+                />
+                <InputField
+                  label="cvc"
+                  type="text"
+                  placeholder="e.g. 123"
+                  value={cvc}
+                  onChange={cvcChangeHandler}
+                  className={classes.mediumInput}
+                  maxLength="3"
+                />
+              </div>
+
+              {!isFormValid && <Button text="Confirm" disabled={true} />}
+              {isFormValid && (
+                <Button onClick={formSubmittion} text="Confirm" />
+              )}
+            </form>
+          )}
+          {formSubmitted && <ConfirmationMessage onClick={formReset} />}
+        </Container>
+      </Suspense>
     </main>
   );
 };
